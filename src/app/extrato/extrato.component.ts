@@ -1,6 +1,7 @@
 import { Transferencia } from './../../../models/transferencia.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { TransferenciaService } from '../services/transferencia.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-extrato',
@@ -9,6 +10,7 @@ import { TransferenciaService } from '../services/transferencia.service';
 })
 export class ExtratoComponent implements OnInit {
   transferencias: any[];
+  private url = 'http://localhost:3000/transferencias';
 
   constructor(private service: TransferenciaService) {}
 
@@ -17,5 +19,13 @@ export class ExtratoComponent implements OnInit {
       console.table(transferencias);
       this.transferencias = transferencias;
     });
+  }
+
+  deleteTransferencia(transferencia: Transferencia) {
+    if (window.confirm('Deseja excluir essa transferência?') == true) {
+      this.service.delete(transferencia).subscribe(() => {
+        this.ngOnInit();
+      });
+    }
   }
 }

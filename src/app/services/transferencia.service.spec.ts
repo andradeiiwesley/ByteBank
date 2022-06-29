@@ -6,11 +6,14 @@ import { TransferenciaService } from './transferencia.service';
 describe('Service: Transferencia', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TransferenciaService]
+      providers: [TransferenciaService],
     });
   });
 
-  it('should ...', inject([TransferenciaService], (service: TransferenciaService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should ...', inject(
+    [TransferenciaService],
+    (service: TransferenciaService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

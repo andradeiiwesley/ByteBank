@@ -13,6 +13,12 @@
         </td>
         <td class="tabela__conteudo">{{ transferencia.valor | currency }}</td>
         <td class="tabela__conteudo">{{ transferencia.destino }}</td>
+        <button
+          class="tabela__conteudo"
+          (click)="deleteTransferencia(transferencia)"
+        >
+          Excluir
+        </button>
       </tr>
     </tbody>
   </table>

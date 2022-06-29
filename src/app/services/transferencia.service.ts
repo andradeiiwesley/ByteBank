@@ -1,7 +1,11 @@
 import { Transferencia } from './../../../models/transferencia.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +30,12 @@ export class TransferenciaService {
     this.hidratar(transferencia);
 
     return this.httpClient.post<Transferencia>(this.url, transferencia);
+  }
+
+  delete(transferencia: Transferencia) {
+    return this.httpClient.delete<Transferencia>(
+      this.url + '/' + transferencia.id
+    );
   }
 
   private hidratar(transferencia: any) {
